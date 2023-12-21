@@ -54,13 +54,13 @@ const playlistSongs = songs.filter(
     </header>
 
     <div class="pl-6 pt-10">
-      <CardPlayButton id={id} size={"large"} client:load />
+      <CardPlayButton id={id} size={"large"} client:visible />
     </div>
 
     <div class="relative z-10 px-6 pt-10" />
     <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10" />
 
-    <section class="p-8"><MusicsTable songs={playlistSongs} /></section>
+    <section class="p-8"><MusicsTable songs={playlistSongs} playlist={playlist} /></section>
   </div>
 </Layout>
 

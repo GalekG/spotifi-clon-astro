@@ -1,7 +1,9 @@
 ---
+import MusicsTable from "@/components/MusicsTable.astro";
 import Layout from "../../layouts/Layout.astro";
 
 import { allPlaylists, songs } from "@/lib/data";
+import { CardPlayButton } from "@/components/CardPlayButton";
 
 const { id } = Astro.params;
 
@@ -12,7 +14,7 @@ const playlistSongs = songs.filter(
 );
 ---
 
-<Layout title="Spotify clone">
+<Layout title={playlist?.title ?? 'Spotify clone'}>
   <div
     id="playlist-container"
     class="relative flex flex-col h-full bg-zinc-900 overflow-x-hidden"
@@ -36,25 +38,29 @@ const playlistSongs = songs.filter(
             {playlist?.title}
           </h1>
         </div>
-  
+
         <div class="flex-1 flex items-end">
           <div class="text-sm text-gray-300 font-normal">
             <span transition:name=`playlist ${id} artists`
               >{playlist?.artists.join(", ")}</span
             >
             <p class="mt-1">
-              <span class="text-white">{playlistSongs.length} canciones</span>, 3
-              h aproximadamente
+              <span class="text-white">{playlistSongs.length} canciones</span>,
+              3 h aproximadamente
             </p>
           </div>
         </div>
       </div>
     </header>
-    <div class="relative z-10 px-6 pt-10"></div>
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10"
-    >
+
+    <div class="pl-6 pt-10">
+      <CardPlayButton id={id} size={"large"} client:load />
     </div>
+
+    <div class="relative z-10 px-6 pt-10" />
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-10" />
+
+    <section class="p-8"><MusicsTable songs={playlistSongs} /></section>
   </div>
 </Layout>
 

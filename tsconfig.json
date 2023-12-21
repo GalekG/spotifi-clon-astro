@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "D:/dev/astro/astro-pr",
+    "baseUrl": "D:/dev/astro/spotifi-clon-astro",
     "paths": {
       "@/*": [
         "src/*"
